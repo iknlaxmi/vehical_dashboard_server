@@ -3,20 +3,7 @@ const router = express.Router();
 const Inventory = require("../models/Inventory");
 const connectToDB = require("../index");
 
-// Inventory.aggregate([
-//   {
-//     $addFields: {
-//       convertedDate: { $toDate: "$timestamp" }, // Replace "timestampField" with the actual field name containing the timestamp
-//     },
-//   },
-// ])
-//   .then((result) => {
-//     console.log("Timestamps converted successfully:");
-//   })
-//   .catch((err) => {
-//     console.error("Error converting timestamps:", err);
-//   });
-
+//Endpoint to get Inventory data based filter values
 router.get("/filter", async (req, res) => {
   const { brand, duration } = req.query;
 
@@ -72,8 +59,6 @@ router.get("/filter", async (req, res) => {
   }
   console.log(filter);
   try {
-    // const inventory = await Inventory.find(filter);
-    // res.json(inventory);
     const inventory = await Inventory.aggregate([
       {
         $addFields: {
@@ -89,7 +74,7 @@ router.get("/filter", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+//End point to get all inventory data
 router.get("/all", async (req, res) => {
   try {
     const inventory = await Inventory.find({});

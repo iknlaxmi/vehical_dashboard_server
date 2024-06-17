@@ -1,5 +1,5 @@
+//Mongodb Schema for Inventory data
 const mongoose = require("mongoose");
-
 const InventorySchema = new mongoose.Schema(
   {
     condition: String,

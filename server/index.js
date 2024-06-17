@@ -2,17 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 
 const app = express();
-const port = 3021;
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
+dotenv.config();
 
+//To connect Mongodb database
 mongoose
-  .connect("mongodb://localhost:27017/vehicle_inventory", {
+  .connect(process.env.MONGO_DB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    dbName: "vehicle_inventory",
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
