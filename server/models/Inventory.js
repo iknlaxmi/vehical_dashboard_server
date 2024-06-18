@@ -6,7 +6,7 @@ const InventorySchema = new mongoose.Schema(
     description: String,
     title: String,
     brand: String,
-    price: Number,
+    price: String,
     product_type: String,
     custom_label_0: String, //model
     timestamp: Date,

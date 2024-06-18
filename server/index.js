@@ -5,12 +5,11 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
 const app = express();
-const port = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
 dotenv.config();
-
+const port = process.env.PORT;
 //To connect Mongodb database
 mongoose
   .connect(process.env.MONGO_DB_URI, {
